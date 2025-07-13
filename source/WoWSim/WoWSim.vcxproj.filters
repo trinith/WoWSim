@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Simulation\PlayerCharacter.cpp">
+      <Filter>Simulaton</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Simulaton">
+      <UniqueIdentifier>{6c6e7e3d-198e-419c-a1e4-b1f87532155b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actions">
+      <UniqueIdentifier>{3a8c7239-95ad-4bdd-aa98-06004715e93a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{afbef2e7-b795-4cb9-962c-8007eb264a43}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Simulation\TemporalQueue.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\IAction.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionBase.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AutoSwingAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SimulationEndAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\Simulation.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\RaceId.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\ClassId.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\Attributes.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\BasicCharacterData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ClassAttributesPerLevel.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\Character.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\PlayerCharacter.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\UniqueId.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\CharacterManager.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionalRef.h" />
+  </ItemGroup>
+</Project>

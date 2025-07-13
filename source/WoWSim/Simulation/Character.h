@@ -1,0 +1,39 @@
+#pragma once
+
+#include <Data/BasicCharacterData.h>
+#include <Simulation/Attributes.h>
+
+#include <algorithm>
+#include <string>
+
+namespace sim
+{
+
+    struct CharacterIdentifierData
+    {
+        std::string name;
+        uint32_t level;
+    };
+
+    class Character
+    {
+    public:
+        Character(uint64_t id, CharacterIdentifierData idData, Attributes baseAttributes)
+            : _id{ id }
+            , _charIdData{ std::move(idData) }
+            , _baseAttributes{ std::move(baseAttributes) }
+        {
+            _charIdData.level = std::clamp(_charIdData.level, 1u, data::MaxLevel);
+        }
+
+        const uint64_t GetId() const { return _id; }
+        const CharacterIdentifierData& GetCharacterIdData() const { return _charIdData; }
+        const Attributes& GetBaseAttributes() const { return _baseAttributes; }
+
+    protected:
+        uint64_t _id;
+        CharacterIdentifierData _charIdData;
+        Attributes _baseAttributes;
+    };
+
+}
