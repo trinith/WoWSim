@@ -152,6 +152,7 @@
     <ClInclude Include="Logging\DebugLogManager.h" />
     <ClInclude Include="OptionalRef.h" />
     <ClInclude Include="Simulation\Attributes\Attributes.h" />
+    <ClInclude Include="Simulation\Attributes\PrimaryAttributes.h" />
     <ClInclude Include="Simulation\Character\Character.h" />
     <ClInclude Include="Simulation\Character\CharacterManager.h" />
     <ClInclude Include="Simulation\Character\MobCharacter.h" />

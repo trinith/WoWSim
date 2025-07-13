@@ -9,8 +9,9 @@ namespace sim
         : _playerIdData{ playerIdData }
         , Character{ id, std::move(charIdData), {} }
     {
-        _baseAttributes += data::RaceAttributeModifiers.at(playerIdData.raceId);
-        _baseAttributes += data::ClassAttributesPerLevel.at(playerIdData.classId)[_charIdData.level - 1];
+        PrimaryAttributes& primaryAttributes = _attributes.primaryAttributes;
+        primaryAttributes += data::RaceAttributeModifiers.at(playerIdData.raceId);
+        primaryAttributes += data::ClassAttributesPerLevel.at(playerIdData.classId)[_charIdData.level - 1];
     }
 
 }

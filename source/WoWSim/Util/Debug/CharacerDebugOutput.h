@@ -39,7 +39,7 @@ namespace debugutil
         LOG_WRITELINE("* Id: ", character.GetId());
         LOG_WRITELINE("* Level: ", charData.level);
         OutputCharacterDetail<TCharacter>(character);
-        LOG_WRITELINE("* Base Attributes: ", character.GetBaseAttributes());
+        LOG_WRITELINE("* Primary Attributes: ", character.GetAttributes().primaryAttributes);
 
         LOG_WRITELINE("* Targets:");
         const sim::TargetManager& targetManager = character.GetTargetManager();

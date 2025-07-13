@@ -95,5 +95,8 @@
     <ClInclude Include="Simulation\Attributes\Attributes.h">
       <Filter>Simulaton\Attributes</Filter>
     </ClInclude>
+    <ClInclude Include="Simulation\Attributes\PrimaryAttributes.h">
+      <Filter>Simulaton\Attributes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

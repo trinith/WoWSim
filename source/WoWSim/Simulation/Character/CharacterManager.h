@@ -13,7 +13,7 @@ namespace sim
     class CharacterManager
     {
     public:
-        uint64_t CreateMobCharacter(CharacterIdentifierData data, Attributes baseAttributes)
+        uint64_t CreateMobCharacter(CharacterIdentifierData data, PrimaryAttributes baseAttributes)
         {
             const uint64_t id = UniqueId::Next<UniqueId::Type::Character>();
             _repo.emplace(id, MobCharacter{ id, std::move(data), std::move(baseAttributes) });

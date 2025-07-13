@@ -26,10 +26,10 @@ namespace sim
     class Character
     {
     public:
-        Character(uint64_t id, CharacterIdentifierData idData, Attributes baseAttributes)
+        Character(uint64_t id, CharacterIdentifierData idData, Attributes attributes)
             : _id{ id }
             , _charIdData{ std::move(idData) }
-            , _baseAttributes{ std::move(baseAttributes) }
+            , _attributes{ std::move(attributes) }
         {
             _charIdData.level = std::clamp(_charIdData.level, 1u, data::MaxLevel);
         }
@@ -38,7 +38,7 @@ namespace sim
 
         const uint64_t GetId() const { return _id; }
         const CharacterIdentifierData& GetCharacterIdData() const { return _charIdData; }
-        const Attributes& GetBaseAttributes() const { return _baseAttributes; }
+        const Attributes& GetAttributes() const { return _attributes; }
 
 		const TargetManager& GetTargetManager() const { return _targetManager; }
         TargetManager& GetTargetManager() { return _targetManager; }
@@ -46,7 +46,7 @@ namespace sim
     protected:
         uint64_t _id;
         CharacterIdentifierData _charIdData;
-        Attributes _baseAttributes;
+        Attributes _attributes;
 
         TargetManager _targetManager{};
     };
