@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Simulation/IAction.h>
-#include <Simulation/CharacterManager.h>
 #include <Simulation/TemporalQueue.h>
+#include <Simulation/Character/CharacterManager.h>
 
 namespace sim
 {

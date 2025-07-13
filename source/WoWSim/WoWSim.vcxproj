@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Simulation\PlayerCharacter.cpp" />
+    <ClCompile Include="Simulation\Character\PlayerCharacter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\ActionBase.h" />
@@ -152,16 +152,18 @@
     <ClInclude Include="Logging\DebugLogManager.h" />
     <ClInclude Include="OptionalRef.h" />
     <ClInclude Include="Simulation\Attributes.h" />
-    <ClInclude Include="Simulation\Character.h" />
-    <ClInclude Include="Simulation\CharacterManager.h" />
+    <ClInclude Include="Simulation\Character\Character.h" />
+    <ClInclude Include="Simulation\Character\CharacterManager.h" />
+    <ClInclude Include="Simulation\Character\MobCharacter.h" />
+    <ClInclude Include="Simulation\Character\PlayerCharacter.h" />
     <ClInclude Include="Simulation\ClassId.h" />
-    <ClInclude Include="Simulation\PlayerCharacter.h" />
     <ClInclude Include="Simulation\RaceId.h" />
     <ClInclude Include="Simulation\Simulation.h" />
     <ClInclude Include="Simulation\IAction.h" />
     <ClInclude Include="Simulation\TargetManager.h" />
     <ClInclude Include="Simulation\TemporalQueue.h" />
     <ClInclude Include="Simulation\UniqueId.h" />
+    <ClInclude Include="Util\Debug\CharacerDebugOutput.h" />
     <ClInclude Include="WoWSimDebugLogging.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -2,14 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Simulation\PlayerCharacter.cpp">
-      <Filter>Simulaton</Filter>
+    <ClCompile Include="Simulation\Character\PlayerCharacter.cpp">
+      <Filter>Simulaton\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Simulaton">
-      <UniqueIdentifier>{6c6e7e3d-198e-419c-a1e4-b1f87532155b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Actions">
       <UniqueIdentifier>{3a8c7239-95ad-4bdd-aa98-06004715e93a}</UniqueIdentifier>
     </Filter>
@@ -18,6 +15,18 @@
     </Filter>
     <Filter Include="Logging">
       <UniqueIdentifier>{300d41cc-3be1-470a-bca3-ead032e8370a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{a686c3ea-b5d2-49d3-a3db-58abecf75033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Simulaton">
+      <UniqueIdentifier>{6c6e7e3d-198e-419c-a1e4-b1f87532155b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Simulaton\Character">
+      <UniqueIdentifier>{b53b5e07-4721-4efa-95c7-f4f3563bc7cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\Debug">
+      <UniqueIdentifier>{2d4061c5-abb1-40cf-92ed-1803bd9942c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,16 +63,7 @@
     <ClInclude Include="Data\ClassAttributesPerLevel.h">
       <Filter>Data</Filter>
     </ClInclude>
-    <ClInclude Include="Simulation\Character.h">
-      <Filter>Simulaton</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulation\PlayerCharacter.h">
-      <Filter>Simulaton</Filter>
-    </ClInclude>
     <ClInclude Include="Simulation\UniqueId.h">
-      <Filter>Simulaton</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulation\CharacterManager.h">
       <Filter>Simulaton</Filter>
     </ClInclude>
     <ClInclude Include="OptionalRef.h" />
@@ -77,5 +77,20 @@
       <Filter>Logging</Filter>
     </ClInclude>
     <ClInclude Include="WoWSimDebugLogging.h" />
+    <ClInclude Include="Simulation\Character\Character.h">
+      <Filter>Simulaton\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\Character\CharacterManager.h">
+      <Filter>Simulaton\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\Character\PlayerCharacter.h">
+      <Filter>Simulaton\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\Character\MobCharacter.h">
+      <Filter>Simulaton\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Debug\CharacerDebugOutput.h">
+      <Filter>Util\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

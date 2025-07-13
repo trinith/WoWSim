@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Simulation/PlayerCharacter.h>
 #include <Simulation/UniqueId.h>
+#include <Simulation/Character/MobCharacter.h>
+#include <Simulation/Character/PlayerCharacter.h>
 
 #include <OptionalRef.h>
 
@@ -12,13 +13,12 @@ namespace sim
     class CharacterManager
     {
     public:
-
-        uint64_t CreateCharacter(CharacterIdentifierData data, Attributes attributes)
+        uint64_t CreateMobCharacter(CharacterIdentifierData data, Attributes baseAttributes)
         {
             const uint64_t id = UniqueId::Next<UniqueId::Type::Character>();
-            _repo.emplace(id, Character{ id, std::move(data), std::move(attributes) });
+            _repo.emplace(id, MobCharacter{ id, std::move(data), std::move(baseAttributes) });
             return id;
-        }
+		}
 
         uint64_t CreatePlayerCharacter(CharacterIdentifierData data, PlayerIdentifierData playerIdData)
         {
@@ -50,7 +50,7 @@ namespace sim
 
     private:
         using StorageType = std::variant<
-            Character,
+            MobCharacter,
             PlayerCharacter
         >;
 

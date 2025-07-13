@@ -11,6 +11,12 @@
 namespace sim
 {
 
+	enum class CharacterType : uint8_t
+    {
+        Mob = 0,
+        Player
+    };
+
     struct CharacterIdentifierData
     {
         std::string name;
@@ -27,6 +33,8 @@ namespace sim
         {
             _charIdData.level = std::clamp(_charIdData.level, 1u, data::MaxLevel);
         }
+
+		virtual CharacterType GetCharacterType() const = 0;
 
         const uint64_t GetId() const { return _id; }
         const CharacterIdentifierData& GetCharacterIdData() const { return _charIdData; }
