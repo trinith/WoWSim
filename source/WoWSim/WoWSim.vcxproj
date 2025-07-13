@@ -75,6 +75,11 @@
     <OutDir>$(SolutionDir)\..\build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\..\build\intermediate\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)\..\build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\..\build\intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir);$(SolutionDir)/../vendor;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -124,6 +129,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,6 +148,8 @@
     <ClInclude Include="Actions\SimulationEndAction.h" />
     <ClInclude Include="Data\BasicCharacterData.h" />
     <ClInclude Include="Data\ClassAttributesPerLevel.h" />
+    <ClInclude Include="Logging\DebugConsoleLogProvider.h" />
+    <ClInclude Include="Logging\DebugLogManager.h" />
     <ClInclude Include="OptionalRef.h" />
     <ClInclude Include="Simulation\Attributes.h" />
     <ClInclude Include="Simulation\Character.h" />
@@ -151,8 +159,10 @@
     <ClInclude Include="Simulation\RaceId.h" />
     <ClInclude Include="Simulation\Simulation.h" />
     <ClInclude Include="Simulation\IAction.h" />
+    <ClInclude Include="Simulation\TargetManager.h" />
     <ClInclude Include="Simulation\TemporalQueue.h" />
     <ClInclude Include="Simulation\UniqueId.h" />
+    <ClInclude Include="WoWSimDebugLogging.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

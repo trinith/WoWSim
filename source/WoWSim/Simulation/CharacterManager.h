@@ -12,6 +12,7 @@ namespace sim
     class CharacterManager
     {
     public:
+
         uint64_t CreateCharacter(CharacterIdentifierData data, Attributes attributes)
         {
             const uint64_t id = UniqueId::Next<UniqueId::Type::Character>();
@@ -53,6 +54,8 @@ namespace sim
             PlayerCharacter
         >;
 
-        std::unordered_map<uint64_t, StorageType> _repo{};
+        using RepositoryType = std::unordered_map<uint64_t, StorageType>;
+
+        RepositoryType _repo{};
     };
 }

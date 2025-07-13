@@ -16,6 +16,9 @@
     <Filter Include="Data">
       <UniqueIdentifier>{afbef2e7-b795-4cb9-962c-8007eb264a43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{300d41cc-3be1-470a-bca3-ead032e8370a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Simulation\TemporalQueue.h">
@@ -64,5 +67,15 @@
       <Filter>Simulaton</Filter>
     </ClInclude>
     <ClInclude Include="OptionalRef.h" />
+    <ClInclude Include="Simulation\TargetManager.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Logging\DebugConsoleLogProvider.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="Logging\DebugLogManager.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="WoWSimDebugLogging.h" />
   </ItemGroup>
 </Project>

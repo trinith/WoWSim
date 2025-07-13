@@ -2,9 +2,11 @@
 
 #include <Data/BasicCharacterData.h>
 #include <Simulation/Attributes.h>
+#include <Simulation/TargetManager.h>
 
 #include <algorithm>
 #include <string>
+#include <vector>
 
 namespace sim
 {
@@ -30,10 +32,15 @@ namespace sim
         const CharacterIdentifierData& GetCharacterIdData() const { return _charIdData; }
         const Attributes& GetBaseAttributes() const { return _baseAttributes; }
 
+		const TargetManager& GetTargetManager() const { return _targetManager; }
+        TargetManager& GetTargetManager() { return _targetManager; }
+
     protected:
         uint64_t _id;
         CharacterIdentifierData _charIdData;
         Attributes _baseAttributes;
+
+        TargetManager _targetManager{};
     };
 
 }
