@@ -28,6 +28,9 @@
     <Filter Include="Util\Debug">
       <UniqueIdentifier>{2d4061c5-abb1-40cf-92ed-1803bd9942c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Simulaton\Attributes">
+      <UniqueIdentifier>{3c1cf202-8392-4449-a3b9-2bb9dd97058d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Simulation\TemporalQueue.h">
@@ -52,9 +55,6 @@
       <Filter>Simulaton</Filter>
     </ClInclude>
     <ClInclude Include="Simulation\ClassId.h">
-      <Filter>Simulaton</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulation\Attributes.h">
       <Filter>Simulaton</Filter>
     </ClInclude>
     <ClInclude Include="Data\BasicCharacterData.h">
@@ -91,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="Util\Debug\CharacerDebugOutput.h">
       <Filter>Util\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\Attributes\Attributes.h">
+      <Filter>Simulaton\Attributes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

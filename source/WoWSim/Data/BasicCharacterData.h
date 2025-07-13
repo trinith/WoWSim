@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Simulation/Attributes.h>
+#include <Simulation/Attributes/Attributes.h>
 #include <Simulation/ClassId.h>
 #include <Simulation/RaceId.h>
 
