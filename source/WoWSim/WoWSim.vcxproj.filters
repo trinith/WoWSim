@@ -5,6 +5,9 @@
     <ClCompile Include="Simulation\Character\PlayerCharacter.cpp">
       <Filter>Simulaton\Character</Filter>
     </ClCompile>
+    <ClCompile Include="Simulation\Attributes\Attributes.cpp">
+      <Filter>Simulaton\Attributes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actions">
@@ -93,9 +96,6 @@
       <Filter>Util\Debug</Filter>
     </ClInclude>
     <ClInclude Include="Simulation\Attributes\Attributes.h">
-      <Filter>Simulaton\Attributes</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulation\Attributes\PrimaryAttributes.h">
       <Filter>Simulaton\Attributes</Filter>
     </ClInclude>
   </ItemGroup>
