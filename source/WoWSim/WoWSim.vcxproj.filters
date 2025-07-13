@@ -5,8 +5,8 @@
     <ClCompile Include="Simulation\Character\PlayerCharacter.cpp">
       <Filter>Simulaton\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Simulation\Attributes\Attributes.cpp">
-      <Filter>Simulaton\Attributes</Filter>
+    <ClCompile Include="Simulation\Attributes.cpp">
+      <Filter>Simulaton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -30,9 +30,6 @@
     </Filter>
     <Filter Include="Util\Debug">
       <UniqueIdentifier>{2d4061c5-abb1-40cf-92ed-1803bd9942c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Simulaton\Attributes">
-      <UniqueIdentifier>{3c1cf202-8392-4449-a3b9-2bb9dd97058d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -95,8 +92,8 @@
     <ClInclude Include="Util\Debug\CharacerDebugOutput.h">
       <Filter>Util\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="Simulation\Attributes\Attributes.h">
-      <Filter>Simulaton\Attributes</Filter>
+    <ClInclude Include="Simulation\Attributes.h">
+      <Filter>Simulaton</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Data/BasicCharacterData.h>
-#include <Simulation/Attributes/Attributes.h>
+#include <Simulation/Attributes.h>
 #include <Simulation/TargetManager.h>
 
 #include <algorithm>

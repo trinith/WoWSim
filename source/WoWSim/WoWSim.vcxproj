@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Simulation\Attributes\Attributes.cpp" />
+    <ClCompile Include="Simulation\Attributes.cpp" />
     <ClCompile Include="Simulation\Character\PlayerCharacter.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,7 +152,7 @@
     <ClInclude Include="Logging\DebugConsoleLogProvider.h" />
     <ClInclude Include="Logging\DebugLogManager.h" />
     <ClInclude Include="OptionalRef.h" />
-    <ClInclude Include="Simulation\Attributes\Attributes.h" />
+    <ClInclude Include="Simulation\Attributes.h" />
     <ClInclude Include="Simulation\Character\Character.h" />
     <ClInclude Include="Simulation\Character\CharacterManager.h" />
     <ClInclude Include="Simulation\Character\MobCharacter.h" />
