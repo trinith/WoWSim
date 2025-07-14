@@ -36,7 +36,7 @@ int main(void)
         { 25, 25, 25, 25, 25}
 	);
 
-    smellyPlayer.GetTargetManager().AddTarget(ammyId);
+    smellyPlayer.GetTargetManager().SetTarget(ammyId);
 
     debugutil::OutputCharacter<sim::PlayerCharacter>(characterManager, smellyId);
     debugutil::OutputCharacter<sim::PlayerCharacter>(characterManager, ammyId);

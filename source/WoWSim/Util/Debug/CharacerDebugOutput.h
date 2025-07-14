@@ -7,6 +7,20 @@
 
 namespace debugutil
 {
+    void OutputTargetDetail(const sim::CharacterManager& characterManager, sim::TargetManager::TargetType target)
+    {
+        if (target)
+        {
+            if (OptionalRef<const sim::Character> targetCharacter = characterManager.TryGet(*target))
+            {
+				const sim::Character& targetChararacter = *targetCharacter;
+                LOG_WRITELINE("* Target: ", targetChararacter.GetCharacterIdData().name, " (", *target, ")");
+                return;
+            }
+        }
+
+        LOG_WRITELINE("* Target: NONE");
+    }
 
     template<typename TCharacter>
     void OutputCharacterDetail(const TCharacter& character) {}
@@ -40,24 +54,7 @@ namespace debugutil
         LOG_WRITELINE("* Level: ", charData.level);
         OutputCharacterDetail<TCharacter>(character);
         LOG_WRITELINE("* Primary Attributes: ", character.GetAttributes().primaryAttributes);
-
-        LOG_WRITELINE("* Targets:");
-        const sim::TargetManager& targetManager = character.GetTargetManager();
-        if (!targetManager.IsEmpty())
-        {
-            LOG_INDENT(targetScope);
-            for (auto&& targetId : targetManager.GetTargets())
-            {
-                auto targetResult = characterManager.TryGet<sim::PlayerCharacter>(targetId);
-                if (targetResult)
-                    LOG_WRITELINE(targetResult->get().GetCharacterIdData().name, " (id=", targetId, ")");
-            }
-        }
-        else
-        {
-            LOG_INDENT(targetScope);
-            LOG_WRITELINE("NONE");
-        }
+		OutputTargetDetail(characterManager, character.GetTargetManager().GetTarget());
     }
 
 }

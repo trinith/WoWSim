@@ -1,38 +1,31 @@
 #pragma once
 
+#include <optional>
 #include <vector>
 
 namespace sim
 {
 
-	using TargetVector = std::vector<uint64_t>;
-
     class TargetManager
     {
     public:
-		const bool IsEmpty() const { return _targets.empty(); }
-        const TargetVector& GetTargets() const { return _targets; }
+		using TargetType = std::optional<uint64_t>;
 
-        void AddTarget(uint64_t targetId)
+    public:
+        const TargetType GetTarget() const { return _target; }
+        
+        void SetTarget(uint64_t targetId)
         {
-            if (std::find(_targets.begin(), _targets.end(), targetId) == _targets.end())
-                _targets.push_back(targetId);
+            _target.emplace(targetId);
         }
 
-        void RemoveTarget(uint64_t targetId)
+        void ClearTarget()
         {
-            auto it = std::remove(_targets.begin(), _targets.end(), targetId);
-            if (it != _targets.end())
-                _targets.erase(it, _targets.end());
-        }
-
-        void ClearTargets()
-        {
-            _targets.clear();
-        }
+            _target.reset();
+		}
 
     private:
-        TargetVector _targets;
+        TargetType _target{};
     };
 
 }
