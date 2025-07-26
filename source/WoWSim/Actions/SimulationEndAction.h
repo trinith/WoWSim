@@ -20,7 +20,8 @@ namespace actions
     protected:
         void OnExecute(sim::Simulation& simulation) override
         {
-            std::cout << "[" << simulation.CurrentTime() << "] SIMULATON END" << std::endl;
+            const sim::SimulationConsoleLog& log = simulation.GetConsoleLog();
+            log.WriteLine("SIMULATION END");
             simulation.Stop();
         }
 

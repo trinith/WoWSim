@@ -101,5 +101,8 @@
     <ClInclude Include="Util\Memory\StaticLifetimeMemoryPool.h">
       <Filter>Util\Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Simulation\SimulationConsoleLog.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

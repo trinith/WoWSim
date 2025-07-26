@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Simulation/IAction.h>
+#include <Simulation/SimulationConsoleLog.h>
 #include <Simulation/TemporalQueue.h>
 #include <Simulation/Character/CharacterManager.h>
 
@@ -13,6 +14,8 @@ namespace sim
 		using TimeType = uint32_t;
 
 	public:
+		const SimulationConsoleLog& GetConsoleLog() const { return _consoleLog; }
+
 		bool IsRunning() const { return _isRunning; }
 		TimeType CurrentTime() const { return _currentTime; }
 		const CharacterManager& GetCharacterManager() const { return _characterManager; }
@@ -36,7 +39,7 @@ namespace sim
 			std::unique_ptr<IAction> action = _actionQueue.Pop();
 			action->Execute(*this);
 
-			std::cout << "Q: " << _actionQueue.ToString() << std::endl;
+			//LOG_WRITELINE("Q: ", _actionQueue.ToString());
 
 			_isRunning = !_actionQueue.IsEmpty();
 		}
@@ -51,6 +54,9 @@ namespace sim
 		CharacterManager _characterManager;
 		TemporalQueue<TimeType, IAction> _actionQueue;
 		TimeType _currentTime = 0;
+		
+		SimulationConsoleLog _consoleLog{ std::bind(&Simulation::CurrentTime, this) };
+
 		bool _isRunning = true;
 	};
 

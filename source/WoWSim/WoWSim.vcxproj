@@ -161,6 +161,7 @@
     <ClInclude Include="Simulation\RaceId.h" />
     <ClInclude Include="Simulation\Simulation.h" />
     <ClInclude Include="Simulation\IAction.h" />
+    <ClInclude Include="Simulation\SimulationConsoleLog.h" />
     <ClInclude Include="Simulation\TargetManager.h" />
     <ClInclude Include="Simulation\TemporalQueue.h" />
     <ClInclude Include="Simulation\UniqueId.h" />
