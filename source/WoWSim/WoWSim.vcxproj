@@ -142,6 +142,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Simulation\Attributes.cpp" />
     <ClCompile Include="Simulation\Character\PlayerCharacter.cpp" />
+    <ClCompile Include="Simulation\CombatLog\ConsoleLogEventWriter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\ActionBase.h" />
@@ -158,6 +159,10 @@
     <ClInclude Include="Simulation\Character\MobCharacter.h" />
     <ClInclude Include="Simulation\Character\PlayerCharacter.h" />
     <ClInclude Include="Simulation\ClassId.h" />
+    <ClInclude Include="Simulation\CombatLog\CombatLog.h" />
+    <ClInclude Include="Simulation\CombatLog\CombatLogEventTypes.h" />
+    <ClInclude Include="Simulation\CombatLog\ConsoleLogEventWriter.h" />
+    <ClInclude Include="Simulation\DamageType.h" />
     <ClInclude Include="Simulation\RaceId.h" />
     <ClInclude Include="Simulation\Simulation.h" />
     <ClInclude Include="Simulation\IAction.h" />
@@ -166,6 +171,7 @@
     <ClInclude Include="Simulation\TemporalQueue.h" />
     <ClInclude Include="Simulation\UniqueId.h" />
     <ClInclude Include="Util\Debug\CharacerDebugOutput.h" />
+    <ClInclude Include="Util\EventHandler.h" />
     <ClInclude Include="Util\Memory\StaticLifetimeMemoryPool.h" />
     <ClInclude Include="WoWSimDebugLogging.h" />
   </ItemGroup>

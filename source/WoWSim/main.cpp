@@ -11,13 +11,13 @@
 int main(void)
 {
     sim::Simulation simulation{};
-	sim::CharacterManager& characterManager = simulation.GetCharacterManager();
+    sim::CharacterManager& characterManager = simulation.GetCharacterManager();
 
     uint64_t smellyId = *characterManager.CreateCharacter<sim::PlayerCharacter>(
         sim::CharacterIdentifierData{ "Smellybeard", 25 },
         sim::PlayerIdentifierData{ sim::RaceId::Dwarf, sim::ClassId::Paladin }
     );
-	sim::PlayerCharacter& smellyPlayer = *characterManager.TryGet<sim::PlayerCharacter>(smellyId);
+    sim::PlayerCharacter& smellyPlayer = *characterManager.TryGet<sim::PlayerCharacter>(smellyId);
 
     uint64_t ammyId = *characterManager.CreateCharacter<sim::PlayerCharacter>(
         sim::CharacterIdentifierData{ "Amarict", 25 },
@@ -26,8 +26,8 @@ int main(void)
 
     uint64_t hoggerId = *characterManager.CreateCharacter<sim::MobCharacter>(
         sim::CharacterIdentifierData{ "Hogger", 11 },
-        sim::PrimaryAttributes{ 25, 25, 25, 25, 25}
-	);
+        sim::PrimaryAttributes{ 25, 25, 25, 25, 25 }
+    );
 
     smellyPlayer.GetTargetManager().SetTarget(ammyId);
 

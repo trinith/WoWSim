@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Actions/ActionBase.h>
+#include <Simulation/DamageType.h>
 #include <Simulation/Simulation.h>
 
 namespace actions
@@ -27,11 +28,21 @@ namespace actions
             if (!data.IsValid())
                 return;
 
-            const sim::SimulationConsoleLog& log = simulation.GetConsoleLog();
+            const sim::CombatLog& log = simulation.GetCombatLog();
             const sim::Character& character = *data.character;
             const sim::Character& target = *data.target;
 
-			log.WriteLine("", character.GetCharacterIdData().name, " swings at ", target.GetCharacterIdData().name, ".");
+            log.LogEvent(
+                sim::EventType::Damage,
+                sim::DamageEventData{
+                    simulation.CurrentTime(),
+                    character.GetId(),
+                    target.GetId(),
+					123.456f,
+                    sim::DamageType::Physical,
+                    false
+                }
+            );
 
             constexpr sim::Simulation::TimeType swingTime = 3800;
             simulation.QueueAction<AutoSwingAction>(swingTime, _characterId);

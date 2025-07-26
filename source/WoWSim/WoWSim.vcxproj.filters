@@ -8,6 +8,9 @@
     <ClCompile Include="Simulation\Attributes.cpp">
       <Filter>Simulaton</Filter>
     </ClCompile>
+    <ClCompile Include="Simulation\CombatLog\ConsoleLogEventWriter.cpp">
+      <Filter>Simulaton\CombatLog</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actions">
@@ -33,6 +36,9 @@
     </Filter>
     <Filter Include="Util\Memory">
       <UniqueIdentifier>{89a26a83-ab73-4f51-8dca-dcf96a8e0d0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Simulaton\CombatLog">
+      <UniqueIdentifier>{8cbe44a7-da30-42bb-8411-195f8767934e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +109,21 @@
     </ClInclude>
     <ClInclude Include="Simulation\SimulationConsoleLog.h">
       <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\EventHandler.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\DamageType.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\CombatLog\CombatLog.h">
+      <Filter>Simulaton\CombatLog</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\CombatLog\CombatLogEventTypes.h">
+      <Filter>Simulaton\CombatLog</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\CombatLog\ConsoleLogEventWriter.h">
+      <Filter>Simulaton\CombatLog</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
