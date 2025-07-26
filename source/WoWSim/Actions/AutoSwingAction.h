@@ -23,33 +23,13 @@ namespace actions
     protected:
         void OnExecute(sim::Simulation& simulation) override
         {
-			const sim::SimulationConsoleLog& log = simulation.GetConsoleLog();
-
-            const sim::CharacterManager& characterManager = simulation.GetCharacterManager();
-			OptionalRef<const sim::Character> characterResult = characterManager.TryGet<sim::Character>(_characterId);
-            if (!characterResult)
-            {
-                log.WriteLine("Character with id, ", _characterId, ", no longer exists. Cancelling this AutoSwingAction.");
+			ActionData data = PrepareActionData(simulation);
+            if (!data.IsValid())
                 return;
-			}
 
-			const sim::Character& character = characterResult->get();
-			std::optional<uint64_t> targetId = character.GetTargetManager().GetTarget();
-
-            if (!targetId)
-            {
-				log.WriteLine("Character with id, ", _characterId, ", has no target. Cancelling this AutoSwingAction.");
-                return;
-            }
-
-			OptionalRef<const sim::Character> targetResult = characterManager.TryGet<sim::Character>(*targetId);
-            if (!targetResult)
-            {
-                log.WriteLine("Target with id, ", *targetId, ", no longer exists. Cancelling this AutoSwingAction.");
-                return;
-			}
-
-			const sim::Character& target = targetResult->get();
+            const sim::SimulationConsoleLog& log = simulation.GetConsoleLog();
+            const sim::Character& character = *data.character;
+            const sim::Character& target = *data.target;
 
 			log.WriteLine("", character.GetCharacterIdData().name, " swings at ", target.GetCharacterIdData().name, ".");
 
@@ -58,6 +38,46 @@ namespace actions
         }
 
     private:
+        struct ActionData
+        {
+            OptionalRef<const sim::Character> character;
+            OptionalRef<const sim::Character> target;
+
+            bool IsValid() const { return character && target; }
+        };
+
+        ActionData PrepareActionData(const sim::Simulation& simulation) const
+        {
+            ActionData data{};
+
+            const sim::SimulationConsoleLog& log = simulation.GetConsoleLog();
+
+            const sim::CharacterManager& characterManager = simulation.GetCharacterManager();
+            data.character = characterManager.TryGet<sim::Character>(_characterId);
+            if (!data.character)
+            {
+                log.WriteLine("Character with id, ", _characterId, ", no longer exists. Cancelling this AutoSwingAction.");
+                return data;
+            }
+
+            std::optional<uint64_t> targetId = data.character->get().GetTargetManager().GetTarget();
+
+            if (!targetId)
+            {
+                log.WriteLine("Character with id, ", _characterId, ", has no target. Cancelling this AutoSwingAction.");
+                return data;
+            }
+
+            data.target = characterManager.TryGet<sim::Character>(*targetId);
+            if (!data.target)
+            {
+                log.WriteLine("Target with id, ", *targetId, ", no longer exists. Cancelling this AutoSwingAction.");
+                return data;
+            }
+
+            return data;
+        }
+
         uint64_t _characterId{};
     };
 
