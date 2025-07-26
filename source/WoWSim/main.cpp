@@ -37,7 +37,7 @@ int main(void)
     std::cout << std::endl;
 
     simulation.QueueAction<actions::SimulationEndAction>(20000);
-    simulation.QueueAction<actions::AutoSwingAction>(0);
+    simulation.QueueAction<actions::AutoSwingAction>(0, smellyId);
 
     while (simulation.IsRunning())
         simulation.Tick();
