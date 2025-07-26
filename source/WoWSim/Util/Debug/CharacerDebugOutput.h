@@ -9,17 +9,23 @@ namespace util
 {
     void OutputTargetDetail(const sim::CharacterManager& characterManager, sim::TargetManager::TargetType target)
     {
-        if (target)
+        if (!target)
         {
-            if (OptionalRef<const sim::Character> targetCharacter = characterManager.TryGet<sim::Character>(*target))
-            {
-				const sim::Character& targetChararacter = *targetCharacter;
-                LOG_WRITELINE("* Target: ", targetChararacter.GetCharacterIdData().name, " (", *target, ")");
-                return;
-            }
+            LOG_WRITELINE("* Target: NONE");
+            return;
         }
 
-        LOG_WRITELINE("* Target: NONE");
+        OptionalRef<const sim::Character> targetCharacter = characterManager.TryGet<sim::Character>(*target);
+        if (!targetCharacter)
+        {
+			LOG_WRITELINE("* Target: NOT FOUND (ID ", *target, ")");
+            return;
+        }
+		
+        const sim::Character& targetChararacter = *targetCharacter;
+        LOG_WRITELINE("* Target: ", targetChararacter.GetCharacterIdData().name, " (", *target, ")");
+        
+        return;
     }
 
     template<typename TCharacter>
