@@ -38,7 +38,9 @@ namespace sim
 
         const uint64_t GetId() const { return _id; }
         const CharacterIdentifierData& GetCharacterIdData() const { return _charIdData; }
+        
         const Attributes& GetAttributes() const { return _attributes; }
+		Attributes& GetAttributes() { return _attributes; }
 
 		const TargetManager& GetTargetManager() const { return _targetManager; }
         TargetManager& GetTargetManager() { return _targetManager; }

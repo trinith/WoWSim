@@ -5,13 +5,13 @@
 #include <WoWSimDebugLogging.h>
 #include <magic_enum/magic_enum.hpp>
 
-namespace debugutil
+namespace util
 {
     void OutputTargetDetail(const sim::CharacterManager& characterManager, sim::TargetManager::TargetType target)
     {
         if (target)
         {
-            if (OptionalRef<const sim::Character> targetCharacter = characterManager.TryGet(*target))
+            if (OptionalRef<const sim::Character> targetCharacter = characterManager.TryGet<sim::Character>(*target))
             {
 				const sim::Character& targetChararacter = *targetCharacter;
                 LOG_WRITELINE("* Target: ", targetChararacter.GetCharacterIdData().name, " (", *target, ")");

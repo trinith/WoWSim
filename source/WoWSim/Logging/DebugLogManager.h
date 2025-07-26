@@ -2,6 +2,8 @@
 
 #if defined(DEBUG_LOGGING)
 
+#include <sstream>
+
 namespace logging
 {
 	template <typename TLogProvider>

@@ -4,35 +4,37 @@
 #include <Simulation/Character/MobCharacter.h>
 #include <Simulation/Character/PlayerCharacter.h>
 
-#include <OptionalRef.h>
+#include <Util/Memory/StaticLifetimeMemoryPool.h>
 
-#include <variant>
+#include <OptionalRef.h>
 
 namespace sim
 {
     class CharacterManager
     {
     public:
-        uint64_t CreateMobCharacter(CharacterIdentifierData data, PrimaryAttributes baseAttributes)
+        template <typename TCharacterType, typename... TArgs>
+			requires std::is_base_of_v<Character, TCharacterType>
+        std::optional<uint64_t> CreateCharacter(TArgs&&... args)
         {
-            const uint64_t id = UniqueId::Next<UniqueId::Type::Character>();
-            _repo.emplace(id, MobCharacter{ id, std::move(data), std::move(baseAttributes) });
-            return id;
-		}
+            if (!_memoryPool.CanAllocate<TCharacterType>())
+                return std::nullopt;
 
-        uint64_t CreatePlayerCharacter(CharacterIdentifierData data, PlayerIdentifierData playerIdData)
-        {
             const uint64_t id = UniqueId::Next<UniqueId::Type::Character>();
-            _repo.emplace(id, PlayerCharacter{ id, std::move(data), std::move(playerIdData) });
-            return id;
+			TCharacterType& character = _memoryPool.Allocate<TCharacterType>(id, std::forward<TArgs&&>(args)...);
+
+            _charList.emplace_back(character);
+            _charMap.emplace(id, &character);
+
+			return id;
         }
 
         template <typename TCharacterType>
             requires std::is_base_of_v<Character, TCharacterType>
         OptionalRef<const TCharacterType> TryGet(uint64_t id) const
         {
-            if (auto findResult = _repo.find(id); findResult != _repo.end() && std::holds_alternative<TCharacterType>(findResult->second))
-                return OptionalRef<const TCharacterType>{std::get<TCharacterType>(findResult->second)};
+            if (auto findResult = _charMap.find(id); findResult != _charMap.end())
+                return OptionalRef<const TCharacterType>{*static_cast<const TCharacterType*>(findResult->second)};
 
             return std::nullopt;
         }
@@ -45,41 +47,15 @@ namespace sim
             if (!result)
                 return std::nullopt;
 
-            return OptionalRef<TCharacterType>{const_cast<TCharacterType&>(result->get())};
+			return OptionalRef<TCharacterType>{const_cast<TCharacterType&>(result->get())};
         }
 
-        // GT_TODO: This needs to be changed but it's good enough for now.
-        OptionalRef<const Character> TryGet(uint64_t id) const
-        {
-            if (auto findResult = _repo.find(id); findResult != _repo.end())
-            {
-                if (std::holds_alternative<MobCharacter>(findResult->second))
-                    return OptionalRef<const Character>{std::get<MobCharacter>(findResult->second)};
-                else if (std::holds_alternative<PlayerCharacter>(findResult->second))
-                    return OptionalRef<const Character>{std::get<PlayerCharacter>(findResult->second)};
-            }
-
-			return std::nullopt;
-        }
-
-        OptionalRef<Character> TryGet(uint64_t id)
-        {
-            OptionalRef<const Character> result = const_cast<const CharacterManager*>(this)->TryGet(id);
-            if (!result)
-                return std::nullopt;
-
-            return OptionalRef<Character>{const_cast<Character&>(result->get())};
-        }
+		auto begin() const { return _charList.begin(); }
+        auto end() const { return _charList.end(); }
 
     private:
-        using StorageType = std::variant<
-            MobCharacter,
-            PlayerCharacter
-        >;
-
-        using RepositoryType = std::unordered_map<uint64_t, StorageType>;
-
-        // GT_TODO: This type should change. The variant isn't working so find another approach.
-        RepositoryType _repo{};
+        util::StaticLifetimeMemoryPool<4096> _memoryPool;
+        std::vector<std::reference_wrapper<const Character>> _charList{};
+        std::unordered_map<uint64_t, Character*> _charMap{};
     };
 }

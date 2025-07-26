@@ -31,6 +31,9 @@
     <Filter Include="Util\Debug">
       <UniqueIdentifier>{2d4061c5-abb1-40cf-92ed-1803bd9942c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Util\Memory">
+      <UniqueIdentifier>{89a26a83-ab73-4f51-8dca-dcf96a8e0d0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Simulation\TemporalQueue.h">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="Simulation\Attributes.h">
       <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Memory\StaticLifetimeMemoryPool.h">
+      <Filter>Util\Memory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
