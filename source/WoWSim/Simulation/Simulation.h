@@ -5,11 +5,7 @@
 #include <Simulation/TemporalQueue.h>
 
 #include <Simulation/Character/CharacterManager.h>
-#include <Simulation/CombatLog/CombatLog.h>
-
-// GT_TODO: Temporary for testing :)
 #include <Simulation/CombatLog/ConsoleLogEventWriter.h>
-#include <magic_enum/magic_enum.hpp>
 
 namespace sim
 {

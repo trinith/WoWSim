@@ -3,6 +3,8 @@
 #include <Simulation/Simulation.h>
 #include <Simulation/SimulationConsoleLog.h>
 
+#include <magic_enum/magic_enum.hpp>
+
 namespace sim
 {
 	/*static*/
