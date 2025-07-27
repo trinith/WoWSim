@@ -12,21 +12,21 @@ namespace sim
 	{
 		switch (eventInfo.eventType)
 		{
-			case EventType::Info:
-				Write(simulation, static_cast<const InfoEventData&>(eventInfo.eventData));
-				break;
+		case EventType::Info:
+			Write(simulation, static_cast<const InfoEventData&>(eventInfo.eventData));
+			break;
 
-			case EventType::Damage:
-				Write(simulation, static_cast<const DamageEventData&>(eventInfo.eventData));
-				break;
+		case EventType::Damage:
+			Write(simulation, static_cast<const DamageEventData&>(eventInfo.eventData));
+			break;
 
-			case EventType::Miss:
-				Write(simulation, static_cast<const MissEventData&>(eventInfo.eventData));
-				break;
+		case EventType::Miss:
+			Write(simulation, static_cast<const MissEventData&>(eventInfo.eventData));
+			break;
 
-			default:
-				Write(simulation, eventInfo.eventData);
-				break;
+		default:
+			Write(simulation, eventInfo.eventData);
+			break;
 		}
 	}
 

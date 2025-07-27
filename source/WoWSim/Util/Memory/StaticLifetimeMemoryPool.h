@@ -6,7 +6,7 @@ namespace util
 {
 
     /// <summary>
-	/// A memory pool that allocates objects whose lifetime is coupled to the lifetime of the pool itself.
+    /// A memory pool that allocates objects whose lifetime is coupled to the lifetime of the pool itself.
     /// </summary>
     /// <typeparam name="TSizeBytes">The total bytes of memory to allocate to the pool.</typeparam>
     template <size_t TSizeBytes>

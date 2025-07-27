@@ -11,7 +11,7 @@ namespace actions
     {
     public:
         AutoSwingAction(std::uint64_t characterId)
-			: ActionBase()
+            : ActionBase()
             , _characterId{ characterId }
         {
         }
@@ -24,7 +24,7 @@ namespace actions
     protected:
         void OnExecute(sim::Simulation& simulation) override
         {
-			ActionData data = PrepareActionData(simulation);
+            ActionData data = PrepareActionData(simulation);
             if (!data.IsValid())
                 return;
 
@@ -38,7 +38,7 @@ namespace actions
                     simulation.CurrentTime(),
                     character.GetId(),
                     target.GetId(),
-					123.456f,
+                    123.456f,
                     sim::DamageType::Physical,
                     false
                 }

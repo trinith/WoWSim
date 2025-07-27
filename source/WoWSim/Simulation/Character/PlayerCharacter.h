@@ -16,7 +16,7 @@ namespace sim
     public:
         PlayerCharacter(uint64_t id, CharacterIdentifierData charIdData, PlayerIdentifierData playerIdData);
 
-		CharacterType GetCharacterType() const override { return CharacterType::Player; }
+        CharacterType GetCharacterType() const override { return CharacterType::Player; }
 
         const PlayerIdentifierData& GetPlayerIdData() const { return _playerIdData; }
     protected:
