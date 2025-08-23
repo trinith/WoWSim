@@ -11,7 +11,8 @@ namespace sim::data
 
     static const std::uint32_t MaxLevel = 60;
 
-    static const std::unordered_map<RaceId, PrimaryAttributes> RaceAttributeModifiers{
+    static const std::unordered_map<RaceId, PrimaryAttributes> RaceAttributeModifiers
+    {
         { RaceId::Human,    PrimaryAttributes{ 0,  0,  0,  0,  0 } },
         { RaceId::Orc,      PrimaryAttributes{ 3, -3,  2, -3,  3 } },
         { RaceId::Dwarf,    PrimaryAttributes{ 2, -4,  3, -1, -1 } },
