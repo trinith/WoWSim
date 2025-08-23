@@ -32,6 +32,9 @@ namespace sim
             , _attributes{ std::move(attributes) }
         {
             _charIdData.level = std::clamp(_charIdData.level, 1u, data::MaxLevel);
+
+            _attributes.combatAttributes.weaponSkill = _charIdData.level * 5;
+            _attributes.defenseAttributes.defense = _charIdData.level * 5;
         }
 
 		virtual CharacterType GetCharacterType() const = 0;

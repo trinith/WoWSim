@@ -33,6 +33,7 @@ int main(void)
     );
 
     smellyPlayer.GetTargetManager().SetTarget(ammyId);
+    smellyPlayer.GetAttributes().combatAttributes.crit = 0.15f;
 
     util::OutputCharacter<sim::PlayerCharacter>(characterManager, smellyId);
     util::OutputCharacter<sim::PlayerCharacter>(characterManager, ammyId);

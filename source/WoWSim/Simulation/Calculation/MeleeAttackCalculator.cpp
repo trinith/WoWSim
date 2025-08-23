@@ -1,5 +1,7 @@
 #include "MeleeAttackCalculator.h"
 
+#include <WoWSimDebugLogging.h>
+
 namespace
 {
     struct CalculationStep
@@ -8,24 +10,21 @@ namespace
         std::function<float(const sim::Character&, const sim::Character&)> func;
     };
 
-    static float CalculateMissChance(const sim::Character& attacker, const sim::Character& target);
-    static float CalculateDodgeChance(const sim::Character& attacker, const sim::Character& target);
-    static float CalculateParryChance(const sim::Character& attacker, const sim::Character& target);
-    static float CalculateGlancingChance(const sim::Character& attacker, const sim::Character& target);
-    static float CalculateBlockChance(const sim::Character& attacker, const sim::Character& target);
-    static float CalculateCritChance(const sim::Character& attacker, const sim::Character& target);
-    static float CalculateCrushingBlowChance(const sim::Character& attacker, const sim::Character& target);
-
     inline static const std::array calculations
     {
-        CalculationStep{ sim::MeleeHitResult::Miss, CalculateMissChance },
-        CalculationStep{ sim::MeleeHitResult::Dodge, CalculateDodgeChance },
-        CalculationStep{ sim::MeleeHitResult::Parry, CalculateParryChance },
-        CalculationStep{ sim::MeleeHitResult::Glancing, CalculateGlancingChance },
-        CalculationStep{ sim::MeleeHitResult::Block, CalculateBlockChance },
-        CalculationStep{ sim::MeleeHitResult::Crit, CalculateCritChance },
-        CalculationStep{ sim::MeleeHitResult::Crushing, CalculateCrushingBlowChance }
+        CalculationStep{ sim::MeleeHitResult::Miss,     sim::MeleeAttackCalculator::CalculateMissChance },
+        CalculationStep{ sim::MeleeHitResult::Dodge,    sim::MeleeAttackCalculator::CalculateDodgeChance },
+        CalculationStep{ sim::MeleeHitResult::Parry,    sim::MeleeAttackCalculator::CalculateParryChance },
+        CalculationStep{ sim::MeleeHitResult::Glancing, sim::MeleeAttackCalculator::CalculateGlancingChance },
+        CalculationStep{ sim::MeleeHitResult::Block,    sim::MeleeAttackCalculator::CalculateBlockChance },
+        CalculationStep{ sim::MeleeHitResult::Crit,     sim::MeleeAttackCalculator::CalculateCritChance },
+        CalculationStep{ sim::MeleeHitResult::Crushing, sim::MeleeAttackCalculator::CalculateCrushingBlowChance }
     };
+
+    int32_t CalculateMaxSkill(const sim::Character& character)
+    {
+        return character.GetCharacterIdData().level * 5;
+    }
 }
 
 namespace sim
@@ -56,68 +55,64 @@ namespace sim
         return MeleeHitResult::Hit;
     }
 
-}
-
-namespace
-{
-    /*static*/
-    float CalculateMissChance(const sim::Character& attacker, const sim::Character& target)
+    float MeleeAttackCalculator::CalculateMissChance(const sim::Character& attacker, const sim::Character& target)
     {
         const sim::Attributes& attackerAttributes = attacker.GetAttributes();
         const sim::Attributes& targetAttributes = target.GetAttributes();
 
-        int32_t attackerWeaponSkill = attacker.GetCharacterIdData().level * 5; // GT_TODO: Add weapon skill to attributes and get from there.
-        int32_t targetDefense = target.GetCharacterIdData().level * 5 + targetAttributes.defenseAttributes.defense; // GT_TODO: Add defense to attributes and get from there.
+        int32_t attackerWeaponSkill = attackerAttributes.combatAttributes.weaponSkill;
+        int32_t targetDefense = targetAttributes.defenseAttributes.defense;
         int32_t skillDiff = targetDefense - attackerWeaponSkill;
 
         // GT_TODO: Update for dual wield...
         float missChance =
             (skillDiff <= 10)
-            ? 0.05f + skillDiff * 0.1f
-            : 0.07f + skillDiff * 0.4f;
+            ? 0.05f + skillDiff * 0.001f
+            : 0.07f + skillDiff * 0.004f;
+
         missChance = std::clamp(missChance, 0.f, 1.f);
 
         return missChance;
     }
 
-    /*static*/
-    float CalculateDodgeChance(const sim::Character& attacker, const sim::Character& target)
+    float MeleeAttackCalculator::CalculateDodgeChance(const sim::Character& attacker, const sim::Character& target)
     {
         const sim::Attributes& targetAttributes = target.GetAttributes();
         return targetAttributes.defenseAttributes.dodge;
     }
 
-    /*static*/
-    float CalculateParryChance(const sim::Character& attacker, const sim::Character& target)
+    float MeleeAttackCalculator::CalculateParryChance(const sim::Character& attacker, const sim::Character& target)
     {
         const sim::Attributes& targetAttributes = target.GetAttributes();
         return targetAttributes.defenseAttributes.parry;
     }
 
-    /*static*/
-    float CalculateGlancingChance(const sim::Character& attacker, const sim::Character& target)
+    float MeleeAttackCalculator::CalculateGlancingChance(const sim::Character& attacker, const sim::Character& target)
     {
         // GT_TODO: Implement glancing blow chance calculation.
         return 0.0f;
     }
 
-    /*static*/
-    float CalculateBlockChance(const sim::Character& attacker, const sim::Character& target)
+    float MeleeAttackCalculator::CalculateBlockChance(const sim::Character& attacker, const sim::Character& target)
     {
         const sim::Attributes& targetAttributes = target.GetAttributes();
         return targetAttributes.defenseAttributes.block;
     }
 
-    /*static*/
-    float CalculateCritChance(const sim::Character& attacker, const sim::Character& target)
+    float MeleeAttackCalculator::CalculateCritChance(const sim::Character& attacker, const sim::Character& target)
     {
-        // GT_TODO: I'm pretty sure defense modifies crit chance somehow... look into that.
         const sim::Attributes& attackerAttributes = attacker.GetAttributes();
-        return attackerAttributes.combatAttributes.crit;
+        const sim::Attributes& targetAttributes = target.GetAttributes();
+
+        float crit = attackerAttributes.combatAttributes.crit;
+        int32_t targetMaxDefense = CalculateMaxSkill(target);
+        int32_t skillDiff = targetAttributes.defenseAttributes.defense - targetMaxDefense;
+        crit -= skillDiff * 0.0004f;
+
+        return crit;
     }
 
-    /*static*/
-    float CalculateCrushingBlowChance(const sim::Character& attacker, const sim::Character& target)
+    float MeleeAttackCalculator::CalculateCrushingBlowChance(const sim::Character& attacker, const sim::Character& target)
     {
         // GT_TODO: Implement crushing blow chance calculation.
         return 0.0f;

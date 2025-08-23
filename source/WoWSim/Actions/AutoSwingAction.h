@@ -54,6 +54,8 @@ namespace actions
             else
             {
                 float damage = 123.456f; // GT_TODO: Calculate damage based on MeleeHitResult.
+                if (hitResult == sim::MeleeHitResult::Crit)
+                    damage *= 2.f;
 
                 log.LogEvent(
                     sim::EventType::Damage,
@@ -61,9 +63,9 @@ namespace actions
                         simulation.CurrentTime(),
                         character.GetId(),
                         target.GetId(),
-                        123.456f,
+                        damage,
                         sim::DamageType::Physical,
-                        false
+                        hitResult == sim::MeleeHitResult::Crit
                     }
                 );
             }

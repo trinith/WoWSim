@@ -24,12 +24,13 @@ namespace sim
         float crit = 0.f;
         float attackSpeed = 0.f;
         float attackPower = 0.f;
+        int32_t weaponSkill = 0;
     };
 
     struct DefenseAttributes
     {
-        uint32_t armor = 0;
-        uint32_t defense = 0;
+        int32_t armor = 0;
+        int32_t defense = 0;
         float dodge = 0.05f;
         float parry = 0.05f;
         float block = 0.f;
