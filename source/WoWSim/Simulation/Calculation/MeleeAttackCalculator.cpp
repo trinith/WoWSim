@@ -77,14 +77,24 @@ namespace sim
 
     float MeleeAttackCalculator::CalculateDodgeChance(const sim::Character& attacker, const sim::Character& target)
     {
+        const sim::Attributes& attackerAttributes = attacker.GetAttributes();
         const sim::Attributes& targetAttributes = target.GetAttributes();
-        return targetAttributes.defenseAttributes.dodge;
+        
+        float dodge = targetAttributes.defenseAttributes.dodge;
+        dodge += (targetAttributes.defenseAttributes.defense - attackerAttributes.combatAttributes.weaponSkill) * 0.0004f;
+
+        return dodge;
     }
 
     float MeleeAttackCalculator::CalculateParryChance(const sim::Character& attacker, const sim::Character& target)
     {
+        const sim::Attributes& attackerAttributes = attacker.GetAttributes();
         const sim::Attributes& targetAttributes = target.GetAttributes();
-        return targetAttributes.defenseAttributes.parry;
+
+        float parry = targetAttributes.defenseAttributes.parry;
+        parry += (targetAttributes.defenseAttributes.defense - attackerAttributes.combatAttributes.weaponSkill) * 0.0004f;
+
+        return parry;
     }
 
     float MeleeAttackCalculator::CalculateGlancingChance(const sim::Character& attacker, const sim::Character& target)

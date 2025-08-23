@@ -40,7 +40,7 @@ int main(void)
     util::OutputCharacter<sim::MobCharacter>(characterManager, hoggerId);
     LOG_WRITELINE();
 
-    simulation.QueueAction<actions::SimulationEndAction>(20000);
+    simulation.QueueAction<actions::SimulationEndAction>(60000);
     simulation.QueueAction<actions::AutoSwingAction>(0, smellyId);
 
     while (simulation.IsRunning())
