@@ -42,8 +42,8 @@ namespace sim
 
     struct MissEventData : public EventData
     {
-        uint64_t targetId;
         uint64_t sourceId;
+        uint64_t targetId;
         MissType missType;
     };
 
