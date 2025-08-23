@@ -141,8 +141,10 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Simulation\Attributes.cpp" />
+    <ClCompile Include="Simulation\Calculation\MeleeAttackCalculator.cpp" />
     <ClCompile Include="Simulation\Character\PlayerCharacter.cpp" />
     <ClCompile Include="Simulation\CombatLog\ConsoleLogEventWriter.cpp" />
+    <ClCompile Include="Util\Random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\ActionBase.h" />
@@ -150,10 +152,12 @@
     <ClInclude Include="Actions\SimulationEndAction.h" />
     <ClInclude Include="Data\BasicCharacterData.h" />
     <ClInclude Include="Data\ClassAttributesPerLevel.h" />
+    <ClInclude Include="Data\WeaponTypes.h" />
     <ClInclude Include="Logging\DebugConsoleLogProvider.h" />
     <ClInclude Include="Logging\DebugLogManager.h" />
     <ClInclude Include="OptionalRef.h" />
     <ClInclude Include="Simulation\Attributes.h" />
+    <ClInclude Include="Simulation\Calculation\MeleeAttackCalculator.h" />
     <ClInclude Include="Simulation\Character\Character.h" />
     <ClInclude Include="Simulation\Character\CharacterManager.h" />
     <ClInclude Include="Simulation\Character\MobCharacter.h" />
@@ -163,6 +167,7 @@
     <ClInclude Include="Simulation\CombatLog\CombatLogEventTypes.h" />
     <ClInclude Include="Simulation\CombatLog\ConsoleLogEventWriter.h" />
     <ClInclude Include="Simulation\DamageType.h" />
+    <ClInclude Include="Simulation\HitResult.h" />
     <ClInclude Include="Simulation\RaceId.h" />
     <ClInclude Include="Simulation\Simulation.h" />
     <ClInclude Include="Simulation\IAction.h" />
@@ -173,6 +178,7 @@
     <ClInclude Include="Util\Debug\CharacerDebugOutput.h" />
     <ClInclude Include="Util\EventHandler.h" />
     <ClInclude Include="Util\Memory\StaticLifetimeMemoryPool.h" />
+    <ClInclude Include="Util\Random.h" />
     <ClInclude Include="WoWSimDebugLogging.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

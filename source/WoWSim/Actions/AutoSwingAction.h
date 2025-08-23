@@ -1,8 +1,12 @@
 #pragma once
 
 #include <Actions/ActionBase.h>
+
 #include <Simulation/DamageType.h>
 #include <Simulation/Simulation.h>
+#include <Simulation/Calculation/MeleeAttackCalculator.h>
+
+#include <Util/Random.h>
 
 namespace actions
 {
@@ -32,19 +36,39 @@ namespace actions
             const sim::Character& character = *data.character;
             const sim::Character& target = *data.target;
 
-            log.LogEvent(
-                sim::EventType::Damage,
-                sim::DamageEventData{
-                    simulation.CurrentTime(),
-                    character.GetId(),
-                    target.GetId(),
-                    123.456f,
-                    sim::DamageType::Physical,
-                    false
-                }
-            );
+            float roll = util::Random::Next(0, 10000) / 100.f;
+            sim::MeleeHitResult hitResult = sim::MeleeAttackCalculator::DetermineHitResult(roll, character, target);
 
-            constexpr sim::Simulation::TimeType swingTime = 3800;
+            if (hitResult <= sim::MeleeHitResult::Parry)
+            {
+                log.LogEvent(
+                    sim::EventType::Miss,
+                    sim::MissEventData{
+                        simulation.CurrentTime(),
+                        character.GetId(),
+                        target.GetId(),
+                        static_cast<sim::MissType>(hitResult)
+                    }
+                );
+            }
+            else
+            {
+                float damage = 123.456f; // GT_TODO: Calculate damage based on MeleeHitResult.
+
+                log.LogEvent(
+                    sim::EventType::Damage,
+                    sim::DamageEventData{
+                        simulation.CurrentTime(),
+                        character.GetId(),
+                        target.GetId(),
+                        123.456f,
+                        sim::DamageType::Physical,
+                        false
+                    }
+                );
+            }
+
+            constexpr sim::Simulation::TimeType swingTime = 3800; // GT_TODO: Get swing timer from character.
             simulation.QueueAction<AutoSwingAction>(swingTime, _characterId);
         }
 

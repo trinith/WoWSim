@@ -52,7 +52,7 @@ namespace sim
 
 		const Character& source = *characterManager.TryGet<Character>(eventData.sourceId);
 		const Character& target = *characterManager.TryGet<Character>(eventData.targetId);
-		consoleLog.WriteLine(source.GetCharacterIdData().name, " swings at ", target.GetCharacterIdData().name, " for ", std::floor(eventData.damageAmount), ".");
+		consoleLog.WriteLine(source.GetCharacterIdData().name, " hits ", target.GetCharacterIdData().name, " for ", std::floor(eventData.damageAmount), ".");
 	}
 
 	/*static*/

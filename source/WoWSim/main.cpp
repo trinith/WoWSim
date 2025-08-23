@@ -4,12 +4,15 @@
 #include <Simulation/Simulation.h>
 #include <Simulation/Character/CharacterManager.h>
 
+#include <Util/Random.h>
 #include <Util/Debug/CharacerDebugOutput.h>
 
 #include <WoWSimDebugLogging.h>
 
 int main(void)
 {
+    util::Random::Initialize();
+
     sim::Simulation simulation{};
     sim::CharacterManager& characterManager = simulation.GetCharacterManager();
 
@@ -34,7 +37,7 @@ int main(void)
     util::OutputCharacter<sim::PlayerCharacter>(characterManager, smellyId);
     util::OutputCharacter<sim::PlayerCharacter>(characterManager, ammyId);
     util::OutputCharacter<sim::MobCharacter>(characterManager, hoggerId);
-    std::cout << std::endl;
+    LOG_WRITELINE();
 
     simulation.QueueAction<actions::SimulationEndAction>(20000);
     simulation.QueueAction<actions::AutoSwingAction>(0, smellyId);

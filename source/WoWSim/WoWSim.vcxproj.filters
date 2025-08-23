@@ -11,6 +11,12 @@
     <ClCompile Include="Simulation\CombatLog\ConsoleLogEventWriter.cpp">
       <Filter>Simulaton\CombatLog</Filter>
     </ClCompile>
+    <ClCompile Include="Simulation\Calculation\MeleeAttackCalculator.cpp">
+      <Filter>Simulaton\Calculation</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Random.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actions">
@@ -39,6 +45,9 @@
     </Filter>
     <Filter Include="Simulaton\CombatLog">
       <UniqueIdentifier>{8cbe44a7-da30-42bb-8411-195f8767934e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Simulaton\Calculation">
+      <UniqueIdentifier>{2d6c48a1-574d-4aae-901b-2cba416e4e47}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +133,18 @@
     </ClInclude>
     <ClInclude Include="Simulation\CombatLog\ConsoleLogEventWriter.h">
       <Filter>Simulaton\CombatLog</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\WeaponTypes.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\HitResult.h">
+      <Filter>Simulaton</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation\Calculation\MeleeAttackCalculator.h">
+      <Filter>Simulaton\Calculation</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Random.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

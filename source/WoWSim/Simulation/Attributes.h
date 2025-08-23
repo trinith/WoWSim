@@ -1,7 +1,10 @@
 #pragma once
 
+#include <Data/WeaponTypes.h>
+
 #include <cstdint>
 #include <ostream>
+#include <unordered_map>
 
 namespace sim
 {
@@ -27,7 +30,8 @@ namespace sim
     {
         uint32_t armor = 0;
         uint32_t defense = 0;
-        float dodge = 0.f;
+        float dodge = 0.05f;
+        float parry = 0.05f;
         float block = 0.f;
     };
 
@@ -48,4 +52,5 @@ namespace sim
     std::ostream& operator<<(std::ostream& os, const PrimaryAttributes& a);
     PrimaryAttributes operator+(PrimaryAttributes lhs, const PrimaryAttributes& rhs);
     PrimaryAttributes& operator+=(PrimaryAttributes& lhs, const PrimaryAttributes& other);
+
 }
