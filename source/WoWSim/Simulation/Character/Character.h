@@ -29,12 +29,14 @@ namespace sim
         Character(uint64_t id, CharacterIdentifierData idData, Attributes attributes)
             : _id{ id }
             , _charIdData{ std::move(idData) }
-            , _attributes{ std::move(attributes) }
+            , _baseAttributes{ std::move(attributes) }
         {
             _charIdData.level = std::clamp(_charIdData.level, 1u, data::MaxLevel);
 
-            _attributes.combatAttributes.weaponSkill = _charIdData.level * 5;
-            _attributes.defenseAttributes.defense = _charIdData.level * 5;
+            _baseAttributes.combatAttributes.weaponSkill = _charIdData.level * 5;
+            _baseAttributes.defenseAttributes.defense = _charIdData.level * 5;
+
+            _attributes = _baseAttributes;
         }
 
 		virtual CharacterType GetCharacterType() const = 0;
@@ -42,6 +44,9 @@ namespace sim
         const uint64_t GetId() const { return _id; }
         const CharacterIdentifierData& GetCharacterIdData() const { return _charIdData; }
         
+        const Attributes& GetBaseAttributes() const { return _baseAttributes; }
+        Attributes& GetBaseAttributes() { return _baseAttributes; }
+
         const Attributes& GetAttributes() const { return _attributes; }
 		Attributes& GetAttributes() { return _attributes; }
 
@@ -51,7 +56,9 @@ namespace sim
     protected:
         uint64_t _id;
         CharacterIdentifierData _charIdData;
-        Attributes _attributes;
+        
+        Attributes _baseAttributes{};
+        Attributes _attributes{};
 
         TargetManager _targetManager{};
     };
