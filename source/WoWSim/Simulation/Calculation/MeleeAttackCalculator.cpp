@@ -115,6 +115,11 @@ namespace sim
         const sim::Attributes& targetAttributes = target.GetAttributes();
 
         float crit = attackerAttributes.combatAttributes.crit;
+
+        // GT_TODO: This is wrong. 
+        // Should use skillDiff = attackerWeaponSkill - targetDefense. Will need to implement weapon skills to achieve this.
+        // Apparently this is a bit more subtle than that, see:
+        //      https://www.reddit.com/r/classicwow/comments/df6fr5/new_crit_chance_calculation_weapon_skillagility/
         int32_t targetMaxDefense = CalculateMaxSkill(target);
         int32_t skillDiff = targetAttributes.defenseAttributes.defense - targetMaxDefense;
         crit -= skillDiff * 0.0004f;
